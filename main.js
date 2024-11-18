@@ -38,9 +38,12 @@ function Task(text) {
         let p = document.createElement("p");
         p.innerText = this.text;
 
+        //delete task
         let del = document.createElement("div");
         del.classList.add('delete');
+        del.addEventListener("click", () => this.deleteTask(this.div));
 
+        //append items
         this.div.append(input);
         this.div.append(p);
         this.div.append(del);
@@ -50,5 +53,9 @@ function Task(text) {
     this.changeState = function (element) {
         this.isDone = !this.isDone;
         element.classList.toggle("completed");
+    }
+
+    this.deleteTask = function (element) {
+        element.closest('.task').remove();
     }
 }
